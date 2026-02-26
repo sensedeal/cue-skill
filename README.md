@@ -95,3 +95,37 @@ cat ~/.cuecue/{chatId}/logs/*.log
 ## 许可证
 
 MIT
+
+---
+
+## 升级指南 / Upgrade Guide
+
+### 从旧版升级
+
+```bash
+# 克隆新版
+git clone https://github.com/sensedeal/cue-skill.git cue-skill
+cd cue-skill
+
+# 运行升级脚本
+./scripts/upgrade.sh
+```
+
+升级脚本会自动：
+- 备份现有配置
+- 保留您的 CUECUE_API_KEY
+- 更新到最新版本
+
+### 配置保留
+
+升级时自动保留：
+- `~/.cuecue/.env.secure` - API 配置
+- `~/.cuecue/users/` - 用户数据
+
+### 首次安装
+
+```bash
+git clone https://github.com/sensedeal/cue-skill.git cue-skill
+cd cue-skill
+./scripts/install.sh
+```
