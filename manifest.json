@@ -42,7 +42,7 @@
     },
     {
       "url": "https://api.tavily.com",
-      "purpose": "News search API (optional)",
+      "purpose": "Search API for monitoring (Tavily or QVeris)",
       "dataSent": "Search queries"
     }
   ],
