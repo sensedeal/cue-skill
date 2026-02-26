@@ -61,3 +61,25 @@ openclaw restart
 ```bash
 ./scripts/upgrade.sh
 ```
+
+---
+
+## 定时推送示例
+
+### 设置每日热点推送
+
+```bash
+# 编辑 crontab
+crontab -e
+
+# 添加以下行：
+# 每天 9:00 推送热点
+0 9 * * * /path/to/cue-skill/examples/scheduled-push.sh "今日A股热点板块"
+
+# 每天 16:00 推送下午简报
+0 16 * * * /path/to/cue-skill/examples/scheduled-push.sh "今日市场总结"
+```
+
+### 自定义
+
+修改 `examples/scheduled-push.sh` 中的 CHAT_ID 为目标用户。
