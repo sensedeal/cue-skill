@@ -77,7 +77,7 @@
     }
   ],
   "installType": "user-package",
-  "installPath": "$HOME/.openclaw/skills/cue",
+  "installPath": "$HOME/.openclaw/skills/cue-skill",
   "requiresRoot": false,
   "systemPathsModified": false,
   "sharedEnvModified": false,

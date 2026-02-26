@@ -1,4 +1,4 @@
-# Cue - 你的专属调研助理 / Your AI Research Assistant
+# Cue — 你的专属调研助理 / Your AI Research Assistant
 
 > 让 AI 成为你的专业调研助理
 
