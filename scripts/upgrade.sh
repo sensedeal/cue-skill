@@ -1,23 +1,43 @@
 #!/bin/bash
-# Cue Skill 升级脚本
+# Cue Skill 升级脚本 - 保留配置
 
 set -e
 echo "🔄 开始升级 Cue Skill..."
 
-# 备份
-if [ -d "$HOME/.cuecue" ]; then
-    cp -r "$HOME/.cuecue" "$HOME/.cuecue.backup.$(date +%Y%m%d)"
-    echo "✅ 备份完成"
+CUE_DIR="$HOME/.cuecue"
+
+# 1. 备份当前配置（保留！）
+if [ -f "$CUE_DIR/.env.secure" ]; then
+    echo "📦 备份现有配置..."
+    cp "$CUE_DIR/.env.secure" "$CUE_DIR/.env.secure.backup.$(date +%Y%m%d)"
+    echo "✅ 配置已备份"
 fi
 
-# 删除旧版
-rm -rf "$HOME/.openclaw/skills/cue"
-rm -rf "$HOME/.openclaw/skills/cue-v1.0.4"
-rm -rf "$HOME/.openclaw/skills/cuecue-gateway"
+# 2. 备份用户数据（可选）
+if [ -d "$CUE_DIR/users" ]; then
+    echo "📦 备份用户数据..."
+    cp -r "$CUE_DIR/users" "$CUE_DIR/users.backup.$(date +%Y%m%d)"
+    echo "✅ 用户数据已备份"
+fi
 
-# 安装新版
+# 3. 删除旧版 skill 代码（保留配置目录）
+echo "🗑️ 更新 skill 代码..."
+rm -rf "$HOME/.openclaw/skills/cue" 2>/dev/null || true
+rm -rf "$HOME/.openclaw/skills/cue-v1.0.4" 2>/dev/null || true
+
+# 4. 克隆新版
 cd "$HOME/.openclaw/skills"
 git clone https://github.com/sensedeal/cue-skill.git cue
-cd cue && npm install
+cd cue
+npm install
 
-echo "✅ 升级完成! 重启 OpenClaw 后生效"
+echo ""
+echo "✅ 升级完成!"
+echo ""
+echo "📋 您的配置已保留："
+echo "   - CUECUE_API_KEY"
+echo "   - 用户数据"
+echo ""
+echo "下一步："
+echo "1. 重启 OpenClaw: openclaw restart"
+echo "2. 测试: /cue 测试"
