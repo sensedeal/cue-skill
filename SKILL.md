@@ -1,4 +1,13 @@
-# Cue — 你的专属调研助理 / Your AI Research Assistant
+---
+name: Cue
+description: 你的专属调研助理 - AI Research Assistant
+icon: 🔍
+read_when:
+  - Using deep research
+  - Managing monitors
+---
+
+# Cue - 你的专属调研助理 / Your AI Research Assistant
 
 > 让 AI 成为你的专业调研助理
 

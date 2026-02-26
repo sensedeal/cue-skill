@@ -3,6 +3,9 @@
   "version": "1.0.5",
   "description": "Cue AI Research Assistant - OpenClaw Skill",
   "type": "module",
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "dependencies": {
     "cuebot": "^1.0.5"
   },
