@@ -1,0 +1,12 @@
+{
+  "name": "cue-skill",
+  "version": "1.0.5",
+  "description": "Cue AI Research Assistant - OpenClaw Skill",
+  "type": "module",
+  "dependencies": {
+    "cuebot": "^1.0.5"
+  },
+  "openclaw": {
+    "skill": true
+  }
+}
