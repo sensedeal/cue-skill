@@ -1,34 +1,38 @@
 # Cue - 你的专属调研助理 / Your AI Research Assistant
 
-> 统一入口和智能路由中心，自动识别用户意图并路由到相应技能。
+> 让 AI 成为你的专业调研助理
 
 ## ⚠️ 安全声明 / Security Notice
-
-**安装前请仔细阅读 / Please read before installing:**
 
 - 🔐 本 Skill 创建本地存储 `$HOME/.cuecue`
 - ⏰ 后台任务：每30分钟运行监控守护进程
 - 🌐 外部 API：需要访问 https://cuecue.cn
 - 🔑 必需：CUECUE_API_KEY
 
+## 核心特色 / Key Features
+
+| 特色 | 说明 |
+|------|------|
+| 🔍 深度研究 | 5-30 分钟生成专业分析报告 |
+| 🎯 自动识别 | 无需指定模式，系统自动匹配研究视角 |
+| 👤 个性化 | 支持用户画像配置 |
+| 📊 智能监控 | 自动追踪关注标的，触发通知 |
+
+## 快速开始 / Quick Start
+
+```
+1. 发送 /cue <研究主题>
+2. 等待研究完成（5-30分钟）
+3. 自动收到研究报告
+4. 可选择创建监控项
+```
+
 ## 安装 / Installation
 
 ```bash
-# 克隆并安装
 git clone https://github.com/sensedeal/cue-skill.git
-cd cue-skill
-npm install
-
-# OpenClaw 中加载
-# 复制到 skills 目录
+cd cue-skill && npm install
 ```
-
-## 核心功能 / Features
-
-- 🔍 深度研究 - 5-30 分钟专业分析报告
-- 🎯 自动模式识别 - 无需指定研究视角
-- 👤 用户画像 - 个性化研究配置
-- 📊 智能监控 - 自动追踪关注标的
 
 ## 命令 / Commands
 
