@@ -63,7 +63,7 @@ clawhub install cue-skill
 
 #### 1. 深度研究（Deep Research）
 
-直接输入研究主题，AI 自动进行多 Agent 并行深度研究，5-30 分钟生成专业分析报告。
+直接输入研究主题（或自然语言），AI 自动进行多 Agent 并行深度研究，5-30 分钟生成专业分析报告。无需指定模式，系统自动识别。
 
 > Enter a research topic directly, and AI will automatically conduct multi-agent parallel deep research, generating professional analysis reports in 5-30 minutes.
 
