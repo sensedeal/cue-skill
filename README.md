@@ -129,3 +129,46 @@ git clone https://github.com/sensedeal/cue-skill.git cue-skill
 cd cue-skill
 ./scripts/install.sh
 ```
+
+---
+
+## 用户画像配置（可选）
+
+创建 `~/.cuecue/users/default.json`:
+
+```json
+{
+  "name": "用户名",
+  "role": "基金经理",
+  "focus_industries": ["新能源", "半导体"],
+  "investment_style": "价值投资",
+  "risk_tolerance": "中等"
+}
+```
+
+设置后，研究时会自动匹配更适合您的视角。
+
+---
+
+## 监控执行流程
+
+```
+1. 搜索触发
+   └─ Tavily / QVeris 搜索关键词
+   
+2. 内容评估
+   └─ 内容不足？ → 浏览器获取
+   
+3. 触发判断
+   └─ 匹配度高？ → 发送通知
+   
+4. 用户确认
+   └─ 可创建新监控或调整
+```
+
+### 数据源优先级
+
+1. **Tavily** - 实时新闻搜索
+2. **QVeris** - API 搜索
+3. **免费 API** - Yahoo/Google/Tencent Finance（预留）
+4. **浏览器** - 动态页面获取
