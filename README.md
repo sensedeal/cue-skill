@@ -4,10 +4,11 @@
 
 ## ⚠️ 安全声明
 
-- 🔐 本 Skill 创建本地存储 `$HOME/.cuecue`
+- 🔐 API Key 通过系统环境变量或 OpenClaw Secrets (v2026.2.26+) 管理
+- 🔐 不写入用户工作区文件，确保安全隔离
 - ⏰ 后台任务：每30分钟运行监控守护进程
 - 🌐 外部 API：需要访问 https://cuecue.cn
-- 🔑 必需：CUECUE_API_KEY
+- ⚠️ **合规声明**：不提供投资建议，只提供客观分析
 
 ## 快速开始
 
@@ -23,6 +24,16 @@ npm install
 openclaw restart
 ```
 
+## 环境配置
+
+| 变量 | 必需 | 说明 |
+|------|------|------|
+| CUECUE_API_KEY | 是 | 深度研究 API Key |
+| TAVILY_API_KEY | 否 | 搜索 API Key |
+| QVERIS_API_KEY | 否 | 搜索 API 备用 |
+
+**推荐**：使用 OpenClaw Secrets 进行配置管理（支持热更新）
+
 ## 命令
 
 | 命令 | 功能 |
@@ -31,24 +42,16 @@ openclaw restart
 | `/ct` | 任务状态 |
 | `/cm` | 监控列表 |
 | `/cn` | 触发通知 |
-| `/key` | 配置 API |
 | `/ch` | 帮助 |
 
-## 用户画像（自动）
+## 研究视角（6种）
 
-首次使用自动创建 `~/.cuecue/{chatId}/profile.json`：
-
-```json
-{
-  "name": "ou_xxx",
-  "role": "个人投资者",
-  "risk_tolerance": "中等",
-  "investment_style": "稳健",
-  "focus_industries": ["新能源", "半导体"]
-}
-```
-
-**自动学习**：研究完成后自动提取行业关键词到 focus_industries
+- 📈 **短线交易** - 龙虎榜、涨停、资金流向
+- 💼 **基金经理** - 财报、估值、基本面
+- 🔬 **产业研究** - 产业链、竞争格局
+- 💰 **理财顾问** - 资产配置、风险控制
+- 📊 **宏观分析** - GDP、CPI、货币政策
+- 🌀 **行业轮动** - 板块轮动、热点
 
 ## 监控流程
 
