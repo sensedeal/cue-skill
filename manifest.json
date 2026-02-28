@@ -20,6 +20,13 @@
       "source": "https://cuecue.cn"
     }
   ],
+  "secrets": {
+    "cuecue_api_key": {
+      "source": "env",
+      "provider": "cuecue",
+      "id": "CUECUE_API_KEY"
+    }
+  },
   "optionalEnvVars": [
     {
       "name": "TAVILY_API_KEY",
