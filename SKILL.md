@@ -1,6 +1,6 @@
 ---
 name: Cue
-description: 你的专属调研助理 - AI Research Assistant / Your AI Research Assistant
+description: 你的专属调研助理。当用户需要进行深度研究、行业分析、公司调研、市场趋势分析时调用此技能。 - AI Research Assistant. Use when users need deep research, industry analysis, company research, or market trend analysis.
 icon: 🔍
 ---
 
