@@ -1,13 +1,35 @@
 #!/usr/bin/env node
 /**
- * Cue CLI - 与代码命令一致
- * 用法: cue <command> [args]
+ * Cue CLI - 简洁版
+ * 用法: cue [选项] [参数]
  */
 import { handleCommand } from '../node_modules/@cuebot/skill/src/index.js';
 
 const args = process.argv.slice(2);
-const command = args[0] || 'ch';  // 默认帮助
-const params = args.slice(1);
+let command = args[0] || '';
+let params = args.slice(1);
+
+// 转换短选项
+const optionMap = {
+  '-t': 'ct',  // task
+  '-m': 'cm',  // monitor
+  '-n': 'cn',  // notification
+  '-k': 'key', // key
+  '-h': 'ch'   // help
+};
+
+// 如果是短选项，转换为完整命令
+if (optionMap[command]) {
+  command = optionMap[command];
+} else if (command && !command.startsWith('-')) {
+  // 没有选项，默认是研究问题
+  // command 保持不变，作为问题
+  params = [command, ...params];
+  command = 'cue';
+} else if (command === '-h' || !command) {
+  command = 'ch';
+  params = [];
+}
 
 handleCommand(command, params).then(result => {
   console.log(result);
