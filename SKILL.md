@@ -2,11 +2,6 @@
 name: Cue
 description: 你的专属调研助理 - AI Research Assistant / Your AI Research Assistant
 icon: 🔍
-read_when:
-  - Using deep research
-  - Managing monitors
-  - 你需要进行专业的投资研究
-  - 你想了解行业趋势和投资机会
 ---
 
 # Cue - 你的专属调研助理 / Your AI Research Assistant
