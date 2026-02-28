@@ -1,0 +1,17 @@
+#!/usr/bin/env node
+/**
+ * Cue CLI - 与代码命令一致
+ * 用法: cue <command> [args]
+ */
+import { handleCommand } from '../node_modules/@cuebot/skill/src/index.js';
+
+const args = process.argv.slice(2);
+const command = args[0] || 'ch';  // 默认帮助
+const params = args.slice(1);
+
+handleCommand(command, params).then(result => {
+  console.log(result);
+}).catch(err => {
+  console.error('Error:', err.message);
+  process.exit(1);
+});
