@@ -25,6 +25,16 @@
       "source": "env",
       "provider": "cuecue",
       "id": "CUECUE_API_KEY"
+    },
+    "tavily_api_key": {
+      "source": "env",
+      "provider": "tavily",
+      "id": "TAVILY_API_KEY"
+    },
+    "qveris_api_key": {
+      "source": "env",
+      "provider": "qveris",
+      "id": "QVERIS_API_KEY"
     }
   },
   "optionalEnvVars": [
