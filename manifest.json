@@ -81,8 +81,12 @@
   ],
   "securityFeatures": [
     {
-      "feature": "Isolated credential storage",
-      "description": "API keys stored only in ~/.cuecue/.env.secure, never in shared ~/.openclaw/.env"
+      "feature": "System environment variable + OpenClaw Secrets",
+      "description": "API keys stored in system environment, accessed via OpenClaw Secrets (v2026.2.26+)"
+    },
+    {
+      "feature": "No user workspace credential storage",
+      "description": "Credentials never written to user workspace files"
     },
     {
       "feature": "File permissions",
@@ -94,11 +98,11 @@
     }
   ],
   "installType": "user-package",
-  "installPath": "$HOME/.openclaw/skills/cue-skill",
+  "installPath": "$HOME/.openclaw/workspace/skills/cue",
   "requiresRoot": false,
   "systemPathsModified": false,
   "sharedEnvModified": false,
-  "source": "https://github.com/openclaw/skills/cue",
+  "source": "https://github.com/sensedeal/cue-skill",
   "warnings": [
     "Creates isolated persistent storage at ~/.cuecue with restricted permissions",
     "Runs background monitoring jobs using internal scheduler (no system cron)",
