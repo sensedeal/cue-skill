@@ -73,3 +73,41 @@ cd cue-skill && npm install
 ## Tags
 
 deep-research, finance, monitoring, research, ai-assistant
+
+## 📖 使用示例 / Examples
+
+### 深度研究
+```
+/cue "分析宁德时代竞争优势"
+cue "比亚迪值得投资吗"
+```
+
+### 任务状态
+```
+cue -t
+/cue -t
+```
+
+### 监控列表
+```
+cue -m
+/cm
+```
+
+### 通知记录
+```
+cue -n        # 最近3天
+cue -n 7     # 最近7天
+```
+
+### 配置 API
+```
+cue -k your-api-key
+/key your-api-key
+```
+
+### 帮助
+```
+cue -h
+/ch
+```
