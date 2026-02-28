@@ -65,8 +65,8 @@
   ],
   "persistentStorage": [
     {
-      "path": "$HOME/.cuecue",
-      "description": "User data including tasks, monitors, logs, and secure credential storage",
+      "path": "/root/.openclaw/workspaces/feishu-{user_id}/.cuecue",
+      "description": "User data including tasks, monitors, logs, and secure credential storage (per-user isolated)",
       "permissions": "700 (directory), 600 (files)",
       "isolated": true
     }
@@ -86,7 +86,7 @@
     },
     {
       "feature": "No user workspace credential storage",
-      "description": "Credentials never written to user workspace files"
+      "description": "Credentials stored in user workspace, isolated per-user"
     },
     {
       "feature": "File permissions",
@@ -104,7 +104,7 @@
   "sharedEnvModified": false,
   "source": "https://github.com/sensedeal/cue-skill",
   "warnings": [
-    "Creates isolated persistent storage at ~/.cuecue with restricted permissions",
+    "Creates isolated persistent storage at /root/.openclaw/workspaces/feishu-{user_id}/.cuecue with restricted permissions",
     "Runs background monitoring jobs using internal scheduler (no system cron)",
     "Requires external API credentials stored securely in isolated location",
     "Sends research data to external endpoints (cuecue.cn, optional tavily.com)"
