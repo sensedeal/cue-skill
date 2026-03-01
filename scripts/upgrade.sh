@@ -1,8 +1,8 @@
 #!/bin/bash
-# Cue Skill 升级脚本 - 保留配置 - v1.0.6
+# Cue Skill 升级脚本 - 保留配置 - v1.0.7
 
 set -e
-echo "🔄 开始升级 Cue Skill v1.0.6..."
+echo "🔄 开始升级 Cue Skill v1.0.7..."
 
 CUE_DIR="$HOME/.cuecue"
 
@@ -23,7 +23,7 @@ fi
 # 3. 删除旧版 skill 代码（保留配置目录）
 echo "🗑️ 更新 skill 代码..."
 rm -rf "$HOME/.openclaw/workspace/skills/cue" 2>/dev/null || true
-rm -rf "$HOME/.openclaw/workspace/skills/cue-v1.0.5" 2>/dev/null || true
+rm -rf "$HOME/.openclaw/workspace/skills/cue-v1.0.7" 2>/dev/null || true
 
 # 4. 克隆新版
 cd "$HOME/.openclaw/workspace/skills"
