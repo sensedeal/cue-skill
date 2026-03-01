@@ -1,6 +1,6 @@
 {
   "name": "cue-skill",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Cue AI Research Assistant - OpenClaw Skill",
   "type": "module",
   "bin": {
