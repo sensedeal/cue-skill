@@ -23,7 +23,6 @@ fi
 # 3. 删除旧版 skill 代码（保留配置目录）
 echo "🗑️ 更新 skill 代码..."
 rm -rf "$HOME/.openclaw/workspace/skills/cue" 2>/dev/null || true
-rm -rf "$HOME/.openclaw/workspace/skills/cue-v1.0.6" 2>/dev/null || true
 
 # 4. 克隆新版
 cd "$HOME/.openclaw/workspace/skills"
