@@ -1,8 +1,8 @@
 #!/bin/bash
-# Cue Skill 全新安装脚本 - v1.0.6
+# Cue Skill 全新安装脚本 - v1.0.7
 
 set -e
-echo "🔄 开始安装 Cue Skill v1.0.6..."
+echo "🔄 开始安装 Cue Skill v1.0.7..."
 
 CUE_DIR="$HOME/.cuecue"
 
