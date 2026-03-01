@@ -56,8 +56,8 @@ cd cue-skill && npm install
 | 命令 / Command | 功能 / Function |
 |----------------|----------------|
 | `/cue <问题>` | 深度调研 / Deep research |
-| `/ct` | 任务状态 / Task status |
-| `/cm` | 监控列表 / Monitor list |
+| `/cue -t` | 任务状态 / Task status |
+| `cue -m` | 监控列表 / Monitor list |
 | `/cn` | 触发通知 / Trigger notifications |
 | `/key` | 配置 API / Configure API |
 | `/ch` | 帮助 / Help |
