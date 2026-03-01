@@ -86,3 +86,21 @@ crontab -e
 ### 自定义
 
 修改 `examples/scheduled-push.sh` 中的 CHAT_ID 为目标用户。
+
+## 多 Channel 支持
+
+从 v1.0.6 开始，支持多 channel（telegram、discord 等）：
+
+### 环境变量
+
+| 变量 | 说明 | 默认值 |
+|------|------|--------|
+| `OPENCLAW_CHANNEL` | 消息 channel 类型 | `feishu` |
+
+### 工作区路径
+
+数据存储路径：`/root/.openclaw/workspaces/{channel}-{user_id}/.cuecue`
+
+示例：
+- 飞书用户：`feishu-{user_id}`
+- Telegram 用户：`telegram-{user_id}`
