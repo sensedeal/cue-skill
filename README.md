@@ -89,7 +89,7 @@ crontab -e
 
 ## 多 Channel 支持
 
-从 v1.0.7 开始，支持多 channel（telegram、discord 等）：
+从 v1.0.6 开始，支持多 channel（telegram、discord 等）：
 
 ### 环境变量
 
