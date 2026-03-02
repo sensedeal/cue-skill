@@ -10,7 +10,7 @@
     "node": ">=18.0.0"
   },
   "dependencies": {
-    "@cuebot/skill": "^1.0.6"
+    "@cuebot/skill": "^1.0.7"
   },
   "openclaw": {
     "skill": true
