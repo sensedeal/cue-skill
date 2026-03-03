@@ -2,6 +2,7 @@
   "name": "Cue",
   "version": "1.0.6",
   "description": "Cue - 你的专属调研助理 / Your AI Research Assistant. A multi-agent deep research tool with persistent monitoring capabilities.",
+  "user-invocable": true,
   "tags": [
     "deep-research",
     "finance",
