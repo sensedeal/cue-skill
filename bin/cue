@@ -3,7 +3,7 @@
  * Cue CLI - 简洁版
  * 用法: cue [选项] [参数]
  */
-import { handleCommand } from '../node_modules/@cuebot/skill/src/index.js';
+import { handleCommand } from '@cuebot/skill';
 
 const args = process.argv.slice(2);
 let command = args[0] || '';
