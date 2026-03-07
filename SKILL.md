@@ -2,6 +2,109 @@
 name: Cue
 description: 你的专属调研助理。当用户需要进行深度研究、行业分析、公司调研、市场趋势分析时调用此技能。 - AI Research Assistant. Use when users need deep research, industry analysis, company research, or market trend analysis.
 icon: 🔍
+user-invocable: true
+read_when:
+  # === 核心研究场景 ===
+  - 深度研究
+  - 深度调研
+  - 深度分析
+  - 全面分析
+  - 深入分析
+  
+  # === 行业/公司分析 ===
+  - 行业分析
+  - 行业趋势
+  - 行业竞争
+  - 竞争格局
+  - 产业链
+  - 供应链
+  - 公司调研
+  - 公司分析
+  - 企业分析
+  - 财报分析
+  - 估值分析
+  - 基本面分析
+  
+  # === 市场/投资 ===
+  - 市场趋势
+  - 市场分析
+  - 市场研究
+  - 投资建议
+  - 资产配置
+  - 风险控制
+  - 投资研究
+  - 理财顾问
+  - 理财
+  - 投资
+  
+  # === 宏观/行业轮动 ===
+  - 宏观经济
+  - 宏观分析
+  - GDP
+  - CPI
+  - 货币政策
+  - 财政政策
+  - 行业轮动
+  - 板块轮动
+  - 景气度
+  - 风口
+  - 赛道
+  
+  # === 短线交易 ===
+  - 龙虎榜
+  - 涨停
+  - 资金流向
+  - 短线交易
+  - 技术分析
+  - 基金经理
+  - 产业研究
+  
+  # === 动词短语（自然表达）===
+  - 分析一下
+  - 研究一下
+  - 调研一下
+  - 帮我分析
+  - 帮我研究
+  - 帮我看看
+  
+  # === 疑问句式 ===
+  - 怎么样?
+  - 如何?
+  - 趋势?
+  - 前景?
+  - 值得投资吗?
+  - 有机会吗?
+  - 风险大吗?
+  - 怎么样
+  - 如何
+  - 趋势
+  - 前景
+  - 值得投资吗
+  - 有机会吗
+  - 风险大吗
+  
+  # === 通用研究词 ===
+  - 分析
+  - 研究
+  - 调研
+  - 趋势
+  - 格局
+  - 竞争
+  - 估值
+  - 财报
+  - 市场
+  - 行业
+  - 公司
+  - 企业
+  
+  # === 典型模式匹配 ===
+  - 分析xx趋势
+  - 研究xx
+  - 调研xx
+  - xx行业分析
+  - xx公司分析
+  - xx怎么样
+  - xx如何
 ---
 
 # Cue - 你的专属调研助理 / Your AI Research Assistant
@@ -38,7 +141,7 @@ icon: 🔍
 ## 快速开始 / Quick Start
 
 ```
-1. 发送 /cue <研究问题> / Send /cue <research question>
+1. 直接输入研究问题，或发送 /cue <研究问题> / Directly ask research questions, or send /cue <research question>
 2. 等待研究完成（5-30分钟）/ Wait for research completion (5-30 min)
 3. 自动收到研究报告 / Receive research report automatically
 4. 可选择创建监控项 / Optionally create monitoring items
@@ -54,7 +157,6 @@ cd cue-skill && npm install
 openclaw gateway restart
 ```
 
-**重要：** 安装或修改 Skill 后必须重启 Gateway 才能生效！
 
 ## 命令 / Commands
 
@@ -84,13 +186,13 @@ deep-research, finance, monitoring, research, ai-assistant
 ### 深度研究
 ```
 /cue "分析宁德时代竞争优势"
-cue "比亚迪值得投资吗"
+"比亚迪值得投资吗"
 ```
 
 ### 任务状态
 ```
 cue -t
-/cue -t
+/ct
 ```
 
 ### 监控列表
