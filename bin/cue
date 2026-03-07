@@ -9,7 +9,7 @@ import path from 'path';
 
 // 🔧 修复：自动检测 OpenClaw 会话信息并设置 CHAT_ID
 function detectChatId() {
-  // 1. 优先使用环境变量
+  // 1. 优先使用环境变量（支持所有渠道）
   const envVars = [
     'CHAT_ID',
     'OPENCLAW_SENDER_ID',
@@ -17,22 +17,29 @@ function detectChatId() {
     'FEISHU_OPENID',
     'FEISHU_CHAT_ID',
     'SENDER_ID',
-    'OPENCLAW_TARGET'
+    'OPENCLAW_TARGET',
+    'TELEGRAM_CHAT_ID',
+    'DISCORD_CHANNEL_ID',
+    'WHATSAPP_CHAT_ID',
+    'SLACK_CHANNEL_ID'
   ];
   
   for (const envVar of envVars) {
     if (process.env[envVar]) {
-      return process.env[envVar].replace(/^user:/, '');
+      // 清理常见前缀：user:, chat:, channel: 等
+      return process.env[envVar].replace(/^(user:|chat:|channel:)/, '');
     }
   }
   
-  // 2. 从 workspace 目录解析用户 ID（使用当前工作目录）
+  // 2. 从 workspace 目录解析用户 ID（通用方案，支持所有渠道）
   try {
     const cwd = process.cwd();
-    // 匹配：/workspaces/feishu-ou_xxx 或 /workspaces/feishu-ou_xxx/
-    const match = cwd.match(/\/workspaces\/feishu-([a-zA-Z0-9_]+)/);
-    if (match && match[1]) {
-      return match[1];
+    // 匹配：/workspaces/{channel}-{user_id}
+    // 支持：feishu-ou_xxx, telegram-123456, discord-789012, etc.
+    const match = cwd.match(/\/workspaces\/([a-zA-Z]+)-([a-zA-Z0-9_]+)/);
+    if (match && match[2]) {
+      // 返回用户 ID 部分（第二个捕获组）
+      return match[2];
     }
   } catch (e) {
     // 忽略错误
