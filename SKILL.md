@@ -49,7 +49,12 @@ icon: 🔍
 ```bash
 git clone https://github.com/sensedeal/cue-skill.git
 cd cue-skill && npm install
+
+# 重启 OpenClaw Gateway 生效
+openclaw gateway restart
 ```
+
+**重要：** 安装或修改 Skill 后必须重启 Gateway 才能生效！
 
 ## 命令 / Commands
 
