@@ -134,6 +134,7 @@ openclaw gateway restart
 | `/cue <问题>` | 深度调研 / Deep research |
 | `cue -t` 或 `/ct` | 任务状态 / Task status |
 | `cue -m` 或 `/cm` | 监控列表 / Monitor list |
+| `/cm add` | 主动创建监控 / Create monitor manually |
 | `cue -n` 或 `/cn` | 触发通知 / Trigger notifications |
 | `/key` | 配置 API / Configure API |
 | `/ch` | 帮助 / Help |
@@ -141,14 +142,34 @@ openclaw gateway restart
 
 ## 📊 监控创建流程 / Monitor Creation Flow
 
-**重要**：监控项不能直接创建，需遵循以下流程：
-
+### 方式一：研究完成后推荐创建（推荐）
 ```
 1. 完成深度研究（`/cue <问题>`）
 2. 等待研究完成（5-30 分钟）
 3. 研究完成后，系统自动提供监控建议卡片
 4. 点击卡片上的"创建监控"按钮，或回复 Y
 5. 使用 `/cm` 查看和管理所有监控项
+```
+
+### 方式二：主动创建监控（新增）
+```
+1. 使用 `/cm add` 命令主动创建监控
+2. 选择监控模板或提供关注主题
+3. 系统推荐适合的监控类型
+4. 确认创建，立即生效
+5. 使用 `/cm` 查看和管理所有监控项
+```
+
+**主动创建示例：**
+```bash
+# 查看所有可用监控模板
+/cm add
+
+# 创建特定类型监控
+/cm add competitive_landscape 新能源汽车
+
+# 智能推荐监控
+/cm add 人工智能
 ```
 
 ### 常见误区 / Common Mistakes
