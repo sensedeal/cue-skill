@@ -3,6 +3,15 @@ name: Cue
 description: 你的专属调研助理。当用户需要进行深度研究、行业分析、公司调研、市场趋势分析时调用此技能。 - AI Research Assistant. Use when users need deep research, industry analysis, company research, or market trend analysis.
 icon: 🔍
 user-invocable: true
+
+# ============ 自动触发配置 ============
+auto-trigger:
+  enabled: true
+  confidence_threshold: 0.6
+  fallback: "suggest"
+  timeout_seconds: 30
+# ====================================
+
 read_when:
   - 深度研究
   - 深度调研
