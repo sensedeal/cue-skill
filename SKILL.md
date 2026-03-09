@@ -1,61 +1,14 @@
+
 ---
 name: Cue
-description: 你的专属调研助理。当用户需要进行深度研究、行业分析、公司调研、市场趋势分析时调用此技能。 - AI Research Assistant. Use when users need deep research, industry analysis, company research, or market trend analysis.
+description: AI Research Assistant. Use when users need deep research, industry analysis, company research, market trend analysis, financial analysis, investment research, or market trend analysis. Your professional research assistant for deep analysis of companies, industries, markets, and financial topics.
 icon: 🔍
 user-invocable: true
-
-# ============ 自动触发配置 ============
-auto-trigger:
-  enabled: true
-  confidence_threshold: 0.6
-  fallback: "suggest"
-  timeout_seconds: 30
-# ====================================
-
-read_when:
-  - 分析
-  - 研究
-  - 调研
-  - 前景
-  - 趋势
-  - 怎么样
-  - 如何
-  - 行业
-  - 公司
-  - 财报
-  - 估值
-  - 竞争
-  - 优势
-  - 格局
-  - 龙虎榜
-  - 涨停
-  - 资金流向
-  - 产业链
-  - 供应链
-  - 基本面
-  - 技术面
-  - 宏观
-  - 板块
-  - 赛道
-  - 风口
-  - 景气度
-  - 投资
-  - 理财
-  - 基金
-  - 股票
-  - analyze
-  - research
-  - investigate
-  - trend
-  - industry
-  - company
-  - finance
-  - investment
 ---
 
 # Cue - 你的专属调研助理 / Your AI Research Assistant
 
-> 让 AI 成为你的专业调研助手 / Let AI be your professional research assistant
+&gt; 让 AI 成为你的专业调研助手 / Let AI be your professional research assistant
 
 ## ⚠️ 安全声明 / Security Notice
 
@@ -87,7 +40,7 @@ read_when:
 ## 快速开始 / Quick Start
 
 ```
-1. 发送 /cue <研究问题> / Send /cue <research question>
+1. 发送 /cue &lt;研究问题&gt; / Send /cue &lt;research question&gt;
 2. 等待研究完成（5-30分钟）/ Wait for research completion (5-30 min)
 3. 自动收到研究报告 / Receive research report automatically
 4. 可选择创建监控项 / Optionally create monitoring items
@@ -97,7 +50,7 @@ read_when:
 
 ```bash
 git clone https://github.com/sensedeal/cue-skill.git
-cd cue-skill && npm install
+cd cue-skill &amp;&amp; npm install
 
 # 重启 OpenClaw Gateway 生效
 openclaw gateway restart
@@ -109,10 +62,9 @@ openclaw gateway restart
 
 | 命令 / Command | 功能 / Function |
 |----------------|----------------|
-| `/cue <问题>` | 深度调研 / Deep research |
+| `/cue &lt;问题&gt;` | 深度调研 / Deep research |
 | `cue -t` 或 `/ct` | 任务状态 / Task status |
 | `cue -m` 或 `/cm` | 监控列表 / Monitor list |
-| `/cm add` | 主动创建监控 / Create monitor manually |
 | `cue -n` 或 `/cn` | 触发通知 / Trigger notifications |
 | `/key` | 配置 API / Configure API |
 | `/ch` | 帮助 / Help |
@@ -120,34 +72,14 @@ openclaw gateway restart
 
 ## 📊 监控创建流程 / Monitor Creation Flow
 
-### 方式一：研究完成后推荐创建（推荐）
+**重要**：监控项不能直接创建，需遵循以下流程：
+
 ```
-1. 完成深度研究（`/cue <问题>`）
+1. 完成深度研究（`/cue &lt;问题&gt;`）
 2. 等待研究完成（5-30 分钟）
 3. 研究完成后，系统自动提供监控建议卡片
 4. 点击卡片上的"创建监控"按钮，或回复 Y
 5. 使用 `/cm` 查看和管理所有监控项
-```
-
-### 方式二：主动创建监控（新增）
-```
-1. 使用 `/cm add` 命令主动创建监控
-2. 选择监控模板或提供关注主题
-3. 系统推荐适合的监控类型
-4. 确认创建，立即生效
-5. 使用 `/cm` 查看和管理所有监控项
-```
-
-**主动创建示例：**
-```bash
-# 查看所有可用监控模板
-/cm add
-
-# 创建特定类型监控
-/cm add competitive_landscape 新能源汽车
-
-# 智能推荐监控
-/cm add 人工智能
 ```
 
 ### 常见误区 / Common Mistakes
@@ -226,3 +158,4 @@ cue -k your-api-key
 cue -h
 /ch
 ```
+
