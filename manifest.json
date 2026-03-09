@@ -15,10 +15,11 @@
   "requiredEnvVars": [
     {
       "name": "CUECUE_API_KEY",
-      "description": "CueCue API Key for deep research (required)",
+      "description": "CueCue API Key for deep research (required, but some environments like 'cuebot' provide free daily quota without API key)",
       "format": "^skb[a-zA-Z0-9]+$",
-      "required": true,
-      "source": "https://cuecue.cn"
+      "required": false,
+      "source": "https://cuecue.cn",
+      "note": "Free tier available: 3 research/day, 5 monitors, 50 conversations"
     }
   ],
   "secrets": {

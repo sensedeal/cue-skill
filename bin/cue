@@ -6,6 +6,62 @@
 import { handleCommand, detectResearchIntent } from '@cuebot/skill';
 import { fileURLToPath } from 'url';
 import path from 'path';
+import { existsSync } from 'fs';
+import { execSync } from 'child_process';
+
+// 🎁 检测是否在支持免费额度的环境
+function isFreeTierEnvironment() {
+  // 检查主机名或环境变量
+  let hostname = process.env.HOSTNAME || '';
+  if (!hostname) {
+    try {
+      hostname = execSync('hostname').toString().trim();
+    } catch (e) {
+      hostname = '';
+    }
+  }
+  const freeTierHosts = ['cuebot', 'cue-bot', 'cue-bot-local'];
+  return freeTierHosts.some(host => hostname.includes(host));
+}
+
+// 🔧 环境检查和友好提示（分层检查）
+function checkEnvironment(options = {}) {
+  const { warnOnly = false, requireApi = false } = options;
+  const hasApiKey = !!process.env.CUECUE_API_KEY;
+  const isFreeTier = isFreeTierEnvironment();
+  
+  // 如果需要 API Key 但没有
+  if (requireApi && !hasApiKey && !isFreeTier) {
+    console.log('⚠️  未检测到 CUECUE_API_KEY');
+    console.log('');
+    console.log('📝 如何获取 API Key：');
+    console.log('   1. 访问 https://cuecue.cn 注册账号');
+    console.log('   2. 获取你的 API Key');
+    console.log('   3. 发送 `/key 你的 APIKey` 完成配置');
+    console.log('');
+    console.log('🎁 注册即送 50 积分，每日还有 10 免费积分！');
+    console.log('');
+    console.log('💡 提示：当前环境可能不支持免费额度，需要配置 API Key。');
+    process.exit(1);
+  }
+  
+  // 警告模式：只显示提示，不阻止执行
+  if (!hasApiKey && !isFreeTier) {
+    if (warnOnly) {
+      console.log('⚠️  警告：未配置 CUECUE_API_KEY，部分功能可能受限\n');
+      return false;
+    }
+  }
+  
+  // 免费环境提示
+  if (isFreeTier && !requireApi) {
+    console.log('✅ 当前环境使用免费额度（每日重置）');
+    console.log('   🔍 深度研究：3 次/日  |  📈 智能监控：5 个  |  💬 免费对话：50 次/日');
+    console.log('');
+  }
+  
+  return hasApiKey || isFreeTier;
+}
 
 // 🔧 修复：自动检测 OpenClaw 会话信息并设置 CHAT_ID
 function detectChatId() {
@@ -53,9 +109,30 @@ if (detectedChatId) {
   process.env.CHAT_ID = detectedChatId;
 }
 
+// 命令分类
+const DIAGNOSTIC_COMMANDS = ['ch', 'help', '--help', '-h', 'test-connection', '--test-connection', 'daemon-status', '--daemon-status'];
+const STATUS_COMMANDS = ['ct', '-t', 'cm', '-m', 'cn', '-n']; // 查询本地状态，不需要 API
+const CONFIG_COMMANDS = ['key', '-k', '--key']; // 配置命令，不需要 API
+const RESEARCH_COMMANDS = ['cue', '/cue']; // 需要 API 的研究命令
+
 const args = process.argv.slice(2);
 let command = args[0] || '';
 let params = args.slice(1);
+
+// 分层环境检查
+// 1. 诊断命令：跳过检查
+// 2. 状态查询：警告模式（warnOnly=true）
+// 3. 配置命令：跳过检查
+// 4. 研究命令：严格检查（requireApi=true）
+if (DIAGNOSTIC_COMMANDS.includes(command) || CONFIG_COMMANDS.includes(command)) {
+  // 跳过检查
+} else if (STATUS_COMMANDS.includes(command)) {
+  // 警告模式，但不阻止执行
+  checkEnvironment({ warnOnly: true });
+} else {
+  // 研究命令或其他命令，严格检查
+  checkEnvironment({ requireApi: true });
+}
 
 // 转换短选项
 const optionMap = {
@@ -63,7 +140,9 @@ const optionMap = {
   '-m': 'cm',  // monitor
   '-n': 'cn',  // notification
   '-k': 'key', // key
-  '-h': 'ch'   // help
+  '-h': 'ch',  // help
+  '--daemon-status': 'daemon-status',
+  '--test-connection': 'test-connection'
 };
 
 // 🔍 自动触发检测逻辑
@@ -76,10 +155,12 @@ if (!command.startsWith('/') && !optionMap[command]) {
     const intent = detectResearchIntent(rawInput);
     
     if (intent) {
-      // 检测到研究意图，自动触发 /cue 命令
+      // 检测到研究意图，自动触发 /cue 命令（需要 API 检查）
       console.log(`🎯 检测到研究意图，正在启动研究...`);
       command = 'cue';
       params = [intent.topic];
+      // 研究命令需要 API，重新检查
+      checkEnvironment({ requireApi: true });
     } else {
       // 没有检测到研究意图，返回空结果让主 Agent 继续处理
       console.log('');
@@ -102,14 +183,48 @@ if (!command.startsWith('/') && !optionMap[command]) {
   if (optionMap[command]) {
     command = optionMap[command];
   } else if (command && !command.startsWith('-')) {
-    // 没有选项，默认是研究问题
+    // 没有选项，默认是研究问题（需要 API 检查）
     // command 保持不变，作为问题
     params = [command, ...params];
     command = 'cue';
+    checkEnvironment({ requireApi: true });
   } else if (command === '-h' || !command) {
     command = 'ch';
     params = [];
   }
+}
+
+// 🔧 新增命令处理
+if (command === 'daemon-status') {
+  // 检查守护进程状态
+  const cronPath = '/root/.openclaw/workspaces/feishu-ou_462a55768b2d026096f3a2abf6f00165/.cuecue/monitors';
+  const hasMonitors = existsSync(cronPath);
+  console.log('📊 监控守护进程状态');
+  console.log('');
+  console.log(`   状态：${hasMonitors ? '✅ 运行中' : '⏸️ 未激活'}`);
+  console.log(`   检查频率：每 30 分钟`);
+  console.log(`   监控目录：${cronPath}`);
+  console.log('');
+  console.log('💡 使用 `cue -m` 查看监控列表');
+  process.exit(0);
+}
+
+if (command === 'test-connection') {
+  // 测试 API 连接
+  console.log('🔌 测试 API 连接...');
+  console.log('');
+  const hasApiKey = !!process.env.CUECUE_API_KEY;
+  const isFreeTier = isFreeTierEnvironment();
+  console.log(`   CUECUE_API_KEY: ${hasApiKey ? '✅ 已配置' : '❌ 未配置'}`);
+  console.log(`   免费额度环境：${isFreeTier ? '✅ 是' : '❌ 否'}`);
+  console.log(`   Tavily API: ${process.env.TAVILY_API_KEY ? '✅ 已配置' : '❌ 未配置'}`);
+  console.log('');
+  if (hasApiKey || isFreeTier) {
+    console.log('✅ 环境配置正常，可以开始使用！');
+  } else {
+    console.log('⚠️  需要配置 CUECUE_API_KEY 才能使用深度研究功能');
+  }
+  process.exit(0);
 }
 
 handleCommand(command, params).then(result => {

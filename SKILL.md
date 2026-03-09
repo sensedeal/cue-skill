@@ -66,6 +66,8 @@ openclaw gateway restart
 | `cue -t` 或 `/ct` | 任务状态 / Task status |
 | `cue -m` 或 `/cm` | 监控列表 / Monitor list |
 | `cue -n` 或 `/cn` | 触发通知 / Trigger notifications |
+| `cue --daemon-status` | 守护进程状态 / Daemon status |
+| `cue --test-connection` | 测试连接 / Test connection |
 | `/key` | 配置 API / Configure API |
 | `/ch` | 帮助 / Help |
 | `/cancel` | 取消当前任务 / Cancel current task |
@@ -105,6 +107,12 @@ cue -n
 cue -n 7
 /cn 7
 
+# 查看守护进程状态
+cue --daemon-status
+
+# 测试 API 连接
+cue --test-connection
+
 # 取消当前任务
 /cancel
 ```
@@ -113,9 +121,19 @@ cue -n 7
 
 | 变量 / Variable | 必需 / Required | 说明 / Description |
 |-----------------|-----------------|-------------------|
-| CUECUE_API_KEY | 是 / Yes | API 密钥（通过系统环境变量或 OpenClaw Secrets）/ API Key (via env or Secrets) |
+| CUECUE_API_KEY | 条件 / Conditional | API 密钥（通过系统环境变量或 OpenClaw Secrets）/ API Key (via env or Secrets)<br>**注意**：部分环境（如 cuebot）提供每日免费额度，无需配置 |
 | TAVILY_API_KEY | 否 / No | 搜索 API 密钥 / Search API Key |
 | QVERIS_API_KEY | 否 / No | 搜索 API 备用 / Search API Backup |
+
+### 🎁 免费额度说明 / Free Tier
+
+**当前环境（cuebot）已配置每日免费额度，无需 API Key！**
+
+- 🔍 深度研究：3 次/日
+- 📈 智能监控：5 个
+- 💬 免费对话：50 次/日
+
+其他环境需访问 https://cuecue.cn 注册获取 API Key。
 
 ## Tags
 

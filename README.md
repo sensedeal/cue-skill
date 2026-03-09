@@ -28,11 +28,21 @@ openclaw restart
 
 | 变量 | 必需 | 说明 |
 |------|------|------|
-| CUECUE_API_KEY | 是 | 深度研究 API Key |
+| CUECUE_API_KEY | 条件 | 深度研究 API Key（部分环境如 cuebot 有免费额度，无需配置） |
 | TAVILY_API_KEY | 否 | 搜索 API Key |
 | QVERIS_API_KEY | 否 | 搜索 API 备用 |
 
 **推荐**：使用 OpenClaw Secrets 进行配置管理（支持热更新）
+
+### 🎁 免费额度
+
+**当前环境（cuebot）已配置每日免费额度，无需 API Key！**
+
+- 🔍 深度研究：3 次/日
+- 📈 智能监控：5 个
+- 💬 免费对话：50 次/日
+
+其他环境需访问 https://cuecue.cn 注册获取 API Key。
 
 ## 命令
 
@@ -42,6 +52,8 @@ openclaw restart
 | `/ct` | 任务状态 |
 | `/cm` | 监控列表 |
 | `/cn` | 触发通知 |
+| `cue --daemon-status` | 守护进程状态 |
+| `cue --test-connection` | 测试连接 |
 | `/ch` | 帮助 |
 
 ## 研究视角（6种）
