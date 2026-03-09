@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 /**
- * Cue CLI - 简洁版
- * 用法：cue [选项] [参数]
+ * Cue CLI - 自动触发版
+ * 用法：cue [选项] [参数] 或直接输入研究问题
  */
-import { handleCommand } from '@cuebot/skill';
+import { handleCommand, detectResearchIntent } from '@cuebot/skill';
 import { fileURLToPath } from 'url';
 import path from 'path';
 
@@ -66,17 +66,50 @@ const optionMap = {
   '-h': 'ch'   // help
 };
 
-// 如果是短选项，转换为完整命令
-if (optionMap[command]) {
-  command = optionMap[command];
-} else if (command && !command.startsWith('-')) {
-  // 没有选项，默认是研究问题
-  // command 保持不变，作为问题
-  params = [command, ...params];
-  command = 'cue';
-} else if (command === '-h' || !command) {
-  command = 'ch';
-  params = [];
+// 🔍 自动触发检测逻辑
+if (!command.startsWith('/') && !optionMap[command]) {
+  // 不是 slash command，也不是短选项，尝试检测研究意图
+  const rawInput = args.join(' ');
+  
+  if (rawInput) {
+    // 调用 detectResearchIntent() 检测
+    const intent = detectResearchIntent(rawInput);
+    
+    if (intent) {
+      // 检测到研究意图，自动触发 /cue 命令
+      console.log(`🎯 检测到研究意图，正在启动研究...`);
+      command = 'cue';
+      params = [intent.topic];
+    } else {
+      // 没有检测到研究意图，返回空结果让主 Agent 继续处理
+      console.log('');
+      process.exit(0);
+    }
+  } else {
+    // 没有输入，显示帮助
+    command = 'ch';
+    params = [];
+  }
+} else {
+  // 是 slash command 或短选项，按原方式处理
+  
+  // 如果是 slash command，去掉开头的 '/'
+  if (command.startsWith('/')) {
+    command = command.slice(1);
+  }
+  
+  // 如果是短选项，转换为完整命令
+  if (optionMap[command]) {
+    command = optionMap[command];
+  } else if (command && !command.startsWith('-')) {
+    // 没有选项，默认是研究问题
+    // command 保持不变，作为问题
+    params = [command, ...params];
+    command = 'cue';
+  } else if (command === '-h' || !command) {
+    command = 'ch';
+    params = [];
+  }
 }
 
 handleCommand(command, params).then(result => {
