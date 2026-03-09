@@ -1,0 +1,8 @@
+node_modules/
+*.tgz
+docs/
+examples/
+coverage/
+dist/
+build/
+*.min.js
