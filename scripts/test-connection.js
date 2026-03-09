@@ -15,15 +15,25 @@ const hasQverisKey = !!process.env.QVERIS_API_KEY;
 
 // 2. 检测是否免费环境
 const { execSync } = await import('child_process');
-let hostname = process.env.HOSTNAME || '';
-if (!hostname) {
-  try {
-    hostname = execSync('hostname').toString().trim();
-  } catch (e) {
-    hostname = '';
+
+// 支持环境变量配置
+let isFreeTier = false;
+if (process.env.CUECUE_FREE_TIER === 'true') {
+  isFreeTier = true;
+} else if (process.env.CUECUE_FREE_TIER === 'false') {
+  isFreeTier = false;
+} else {
+  // 回退到主机名检测
+  let hostname = process.env.HOSTNAME || '';
+  if (!hostname) {
+    try {
+      hostname = execSync('hostname').toString().trim();
+    } catch (e) {
+      hostname = '';
+    }
   }
+  isFreeTier = ['cuebot', 'cue-bot', 'cue-bot-local'].some(h => hostname.includes(h));
 }
-const isFreeTier = ['cuebot', 'cue-bot', 'cue-bot-local'].some(h => hostname.includes(h));
 
 console.log('📋 环境变量检查');
 console.log('─────────────────────────────────────');
