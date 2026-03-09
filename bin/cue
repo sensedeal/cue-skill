@@ -3,6 +3,11 @@
  * Cue CLI - 自动触发版
  * 用法：cue [选项] [参数] 或直接输入研究问题
  */
+
+// 🔧 在 import 之前设置 CUECUE_DIR（cuebot 模块初始化时需要）
+const workspacePath = process.cwd();
+process.env.CUECUE_DIR = process.env.CUECUE_DIR || path.join(workspacePath, '.cuecue');
+
 import { handleCommand, detectResearchIntent } from '@cuebot/skill';
 import { fileURLToPath } from 'url';
 import path from 'path';
