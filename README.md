@@ -116,3 +116,34 @@ crontab -e
 示例：
 - 飞书用户：`feishu-{user_id}`
 - Telegram 用户：`telegram-{user_id}`
+
+---
+
+## 📚 文档中心
+
+查看完整文档：[docs/README.md](./docs/README.md)
+
+### 用户文档
+- ⭐ [快速开始指南](./docs/QUICKSTART.md) - 5分钟上手教程
+- 📖 [功能使用说明](./docs/USAGE.md) - 完整功能详解
+- ❓ [常见问题解答](./docs/FAQ.md) - 用户常见问题
+- 🚀 [新功能特性](./docs/FEATURES.md) - Phase 1-4 介绍
+
+### 开发者文档
+- 🔧 [API 接口文档](../cuebot/docs/API.md) - 完整 API 说明
+- 🧪 [测试用例文档](../cuebot/docs/TESTING.md) - Phase 1-4 测试覆盖
+
+---
+
+## ✨ Phase 1-4 已完成！
+
+Cue Skill 优化方案 4 个阶段已全部完成：
+
+| 阶段 | 功能 |
+|------|------|
+| **Phase 1** | 基础增强（问题类型/复杂度/实体） |
+| **Phase 2** | 动态框架（多复杂度/动态选择/实体定制） |
+| **Phase 3** | 个性化（用户历史/个性化框架/偏好学习） |
+| **Phase 4** | 智能路由（8维度意图/多阶段决策/智能提示词） |
+
+查看 [新功能特性](./docs/FEATURES.md) 了解更多！

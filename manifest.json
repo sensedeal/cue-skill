@@ -3,6 +3,50 @@
   "version": "1.0.6",
   "description": "Cue - 你的专属调研助理 / Your AI Research Assistant. A multi-agent deep research tool with persistent monitoring capabilities.",
   "user-invocable": true,
+  "autoTriggers": {
+    "enabled": true,
+    "description": "自动识别投资研究类问题，触发 Cue 深度研究",
+    "patterns": [
+      "分析.*公司",
+      "分析.*行业",
+      "分析.*板块",
+      ".*股价",
+      ".*市值",
+      ".*投资价值",
+      ".*值得投资",
+      ".*行业格局",
+      ".*竞争优势",
+      ".*竞争格局",
+      ".*产业链",
+      "深度研究.*",
+      "调研.*",
+      ".*研报",
+      ".*基本面",
+      ".*财报分析",
+      ".*估值分析",
+      ".*目标价",
+      ".*买入.*卖出",
+      ".*持仓.*股票",
+      ".*新能源.*",
+      ".*半导体.*",
+      ".*芯片.*",
+      ".*AI.*算力",
+      ".*光模块.*",
+      ".*券商.*"
+    ],
+    "excludePatterns": [
+      "天气",
+      "新闻",
+      "翻译",
+      "代码",
+      "写.*程序"
+    ],
+    "action": "cue_research",
+    "confidence": {
+      "threshold": 0.6,
+      "autoExecute": true
+    }
+  },
   "tags": [
     "deep-research",
     "finance",
