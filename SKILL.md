@@ -70,7 +70,8 @@ openclaw gateway restart
 | `cue --test-connection` | 测试连接 / Test connection |
 | `/key` | 配置 API / Configure API |
 | `/ch` | 帮助 / Help |
-| `/cancel` | 取消当前任务 / Cancel current task |
+
+**注意**：深度研究任务在服务端运行，不支持取消。进度通知中仅提供"查看详情"按钮。
 
 ## 📊 监控创建流程 / Monitor Creation Flow
 
@@ -112,10 +113,9 @@ cue --daemon-status
 
 # 测试 API 连接
 cue --test-connection
-
-# 取消当前任务
-/cancel
 ```
+
+**注意**：深度研究任务在服务端运行，不支持取消功能。进度通知中仅提供"📊 查看详情"按钮。
 
 ## 环境变量 / Environment Variables
 
